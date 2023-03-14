@@ -1,7 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { UsersComponent } from './component/users/users.component';
+import { UserdetailComponent } from './component/userdetail/userdetail.component';
+import { UserResolver } from './service/user.resolver';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: 'users', component: UsersComponent
+  },
+  {
+    path: 'user/:uuid', component: UserdetailComponent, resolve: { resoledResponse: UserResolver }
+  },
+  {
+    path: '**', redirectTo: 'users'
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
